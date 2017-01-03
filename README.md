@@ -14,8 +14,17 @@ npm install slack-notify
 
 // Require module:
 
-var MY_SLACK_WEBHOOK_URL = 'https://myaccountname.slack.com/services/hooks/incoming-webhook?token=myToken';
-var slack = require('slack-notify')(MY_SLACK_WEBHOOK_URL);
+Usage:
+
+var params = {
+    'webhook_url': 'https://myaccountname.slack.com/services/hooks/incoming-webhook?token=myToken',
+    'channel': '#project_name',
+    'username': 'username'
+};
+
+var slack = require('slack-notify')(params);
+
+slack.critical('Something bad happened!');
 
 // Bundled notification types:
 

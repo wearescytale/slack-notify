@@ -6,11 +6,13 @@
 
  Usage:
 
- var MY_SLACK_WEBHOOK_URL = 'https://myaccountname.slack.com/services/hooks/incoming-webhook?token=myToken';
- var SLACK_CHANNEL = '#project_name';
- var USERNAME = '#bot_name';
+ var params = {
+     'webhook_url': 'https://myaccountname.slack.com/services/hooks/incoming-webhook?token=myToken',
+     'channel': '#project_name',
+     'username': 'username'
+ };
 
- var slack = require('slack-notify')(MY_SLACK_WEBHOOK_URL)(SLACK_CHANNEL)(USERNAME);
+ var slack = require('slack-notify')(params);
 
  slack.critical('Something bad happened!');
 
@@ -27,8 +29,12 @@
 var request = require('request');
 var _ = require('lodash');
 
-module.exports = function (url, slackChannel, username) {
+module.exports = function (params) {
     var pub = {};
+
+    var url          = params.webhook_url;
+    var slackChannel = params.channel;
+    var username     = params.username;
 
     pub.request = function (data, done) {
         if (!url) {
